@@ -13,7 +13,7 @@ public class NashornRunner {
 
     public static void main(String[] args) {
         try {
-            Object result = nashornScriptEngine.invokeFunction("test");
+            Object result = nashornScriptEngine.invokeFunction("hello", "Lithium");
             System.out.printf(result.toString());
         } catch (ScriptException | NoSuchMethodException e) {
             e.printStackTrace();
@@ -23,7 +23,8 @@ public class NashornRunner {
     private static NashornScriptEngine setupNashornScriptEngine() throws RuntimeException {
         NashornScriptEngine nashornScriptEngine = (NashornScriptEngine) new ScriptEngineManager().getEngineByName("nashorn");
         try {
-            nashornScriptEngine.eval(read("test.js"));
+            nashornScriptEngine.eval(read("jvm-npm.js"));
+            nashornScriptEngine.eval(read("app.js"));
         } catch (ScriptException e) {
             throw new RuntimeException(e);
         }
